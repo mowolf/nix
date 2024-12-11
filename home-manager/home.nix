@@ -50,7 +50,7 @@
   };
 
   # programs to run on startup
-  launchd.agents = {
+/*  launchd.agents = {
     iterm2 = {
       enable = true;
       config = {
@@ -58,5 +58,5 @@
         RunAtLoad = true;
       };
     };
-  };
+    };*/
 }

@@ -21,6 +21,7 @@
       environment = {
         systemPackages = [ 
           pkgs.home-manager
+          pkgs.git
         ];
         shells = [
           pkgs.bashInteractive
@@ -58,7 +59,6 @@
           /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
         '';
       };
-
       # Add ability to used TouchID for sudo authentication
       security.pam.enableSudoTouchIdAuth = true;
 
@@ -74,9 +74,10 @@
         onActivation.autoUpdate = true;
         casks = [
           "signal"
-          "arc"
           "webstorm"
+          "phpstorm"
           "visual-studio-code"
+          "docker"
         ];
         brews = [
           "autojump"
