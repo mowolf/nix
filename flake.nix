@@ -22,6 +22,9 @@
         systemPackages = [ 
           pkgs.home-manager
           pkgs.git
+          pkgs.awscli2
+          pkgs.nodejs_22
+          pkgs.pnpm
         ];
         shells = [
           pkgs.bashInteractive
