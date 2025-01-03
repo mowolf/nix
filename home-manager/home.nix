@@ -43,6 +43,29 @@
     };
   };
 
+    programs.git = {
+      enable = true;
+      delta.enable = true;
+      aliases = {
+        s = "status -s";
+      };
+    };
+
+    programs.eza = {
+      enable = true;
+      icons = true;
+    };
+
+    programs.bat = {
+      enable = true;
+      config = {
+        theme = "gruvbox-dark";
+      };
+    };
+
+    programs.fzf.enable = true;
+    programs.jq.enable = true;
+
   # add my custom stuff to fish config
   xdg.configFile.fish-integration = {
     source = ./config.cloud.fish;
