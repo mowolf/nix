@@ -24,6 +24,7 @@
           pkgs.awscli2
           pkgs.nodejs_22
           pkgs.pnpm
+          pkgs.exiftool
         ];
         shells = [
           pkgs.bashInteractive
@@ -80,6 +81,7 @@
           "phpstorm"
           "visual-studio-code"
           "docker"
+          "spotify"
         ];
         brews = [
           "autojump"
