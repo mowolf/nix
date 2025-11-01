@@ -43,6 +43,7 @@
       # Used for backwards compatibility, please read the changelog before changing.
       # $ darwin-rebuild changelog
       system = {
+        primaryUser = "Mo";
         stateVersion = 5;
         configurationRevision = self.rev or self.dirtyRev or null;
 
@@ -56,14 +57,9 @@
           #};
         };
 
-        # normally you would need to logout login so preferences take effect
-        activationScripts.postUserActivation.text = ''
-          # Following line should allow us to avoid a logout/login cycle
-          /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
-        '';
       };
       # Add ability to used TouchID for sudo authentication
-      security.pam.enableSudoTouchIdAuth = true;
+      security.pam.services.sudo_local.touchIdAuth = true;
 
       users.users.mo = {
         name = "Mo";
@@ -95,8 +91,7 @@
         # Create /etc/zshrc that loads the nix-darwin environment.
         zsh.enable = true;
         fish.enable = true;
-        # Avoid bugs with npm like https://github.com/NixOS/nixpkgs/issues/16441
-        pnpm.enable = true;
+
       };
 
       # The platform the configuration will be used on.
