@@ -95,6 +95,8 @@
         # Create /etc/zshrc that loads the nix-darwin environment.
         zsh.enable = true;
         fish.enable = true;
+        # Avoid bugs with npm like https://github.com/NixOS/nixpkgs/issues/16441
+        pnpm.enable = true;
       };
 
       # The platform the configuration will be used on.
