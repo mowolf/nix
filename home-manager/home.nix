@@ -3,7 +3,7 @@
   home = {
     username = "Mo";
     homeDirectory = "/Users/Mo";
-    stateVersion = "24.05";
+    stateVersion = "25.05";
     packages = [
       pkgs.nix-your-shell
     ];
@@ -53,7 +53,7 @@
 
     programs.eza = {
       enable = true;
-      icons = true;
+      icons = "auto";
     };
 
     programs.bat = {
