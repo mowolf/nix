@@ -25,6 +25,7 @@
           pkgs.nodejs_22
           pkgs.pnpm
           pkgs.exiftool
+          pkgs.ffmpeg
         ];
         shells = [
           pkgs.bashInteractive
