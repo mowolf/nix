@@ -1,3 +1,6 @@
+make update   # updates flake.lock inputs
+make check    # validates the configuration
+make rebuild  # applies nix-darwin and Homebrew declarations
 
 !! To Update run `make rebuild`
 

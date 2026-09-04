@@ -10,9 +10,12 @@
 
     home-manager.url = "github:nix-community/home-manager/release-25.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    # https://herdr.dev — terminal workspace manager for AI coding agents
+    herdr.url = "github:herdrdev/herdr";
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, herdr }:
   let
     configuration = { pkgs, ... }: {
       # List packages installed in system profile. To search by name, run:
@@ -26,6 +29,7 @@
           pkgs.pnpm
           pkgs.exiftool
           pkgs.ffmpeg
+          herdr.packages.${pkgs.system}.default
         ];
         shells = [
           pkgs.bashInteractive
@@ -72,22 +76,24 @@
         # updates homebrew packages on activation,
         # can make darwin-rebuild much slower (otherwise i'd forget to do it ever though)
         onActivation.autoUpdate = true;
+        onActivation.upgrade = true;
         casks = [
           "signal"
-          "webstorm"
           "phpstorm"
           "visual-studio-code"
           "docker-desktop"
           "spotify"
           "claude-code"
+          "codex"
         ];
         brews = [
           "autojump"
           "cocoapods"
+          "beads"
         ];
-        masApps = {
-          "Bitwarden" = 1352778147;
-        };
+#        masApps = {
+#          "Bitwarden" = 1352778147;
+#        };
       };
 
       programs = {
