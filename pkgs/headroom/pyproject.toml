@@ -1,0 +1,11 @@
+# Dependency declaration for the headroom.ai install, resolved into ./uv.lock.
+# This is not a Python project of its own — it only names what to install,
+# the way `pip install "headroom-ai[all]"` would.
+[project]
+name = "headroom-env"
+version = "0.0.0"
+requires-python = ">=3.13"
+dependencies = ["headroom-ai[all]"]
+
+[tool.uv]
+package = false

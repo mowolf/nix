@@ -13,11 +13,30 @@
 
     # https://herdr.dev — terminal workspace manager for AI coding agents
     herdr.url = "github:herdrdev/herdr";
+
+    # Builds Python packages that nixpkgs lacks straight from a uv.lock;
+    # used for headroom.ai in ./pkgs/headroom.
+    pyproject-nix.url = "github:pyproject-nix/pyproject.nix";
+    pyproject-nix.inputs.nixpkgs.follows = "nixpkgs";
+
+    uv2nix.url = "github:pyproject-nix/uv2nix";
+    uv2nix.inputs.pyproject-nix.follows = "pyproject-nix";
+    uv2nix.inputs.nixpkgs.follows = "nixpkgs";
+
+    pyproject-build-systems.url = "github:pyproject-nix/build-system-pkgs";
+    pyproject-build-systems.inputs.pyproject-nix.follows = "pyproject-nix";
+    pyproject-build-systems.inputs.uv2nix.follows = "uv2nix";
+    pyproject-build-systems.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, herdr }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, herdr
+                   , pyproject-nix, uv2nix, pyproject-build-systems }:
   let
-    configuration = { pkgs, ... }: {
+    configuration = { pkgs, ... }: let
+      headroom = pkgs.callPackage ./pkgs/headroom {
+        inherit pyproject-nix uv2nix pyproject-build-systems;
+      };
+    in {
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
 
@@ -25,11 +44,12 @@
         systemPackages = [ 
           pkgs.home-manager
           pkgs.awscli2
-          pkgs.nodejs_22
+          pkgs.nodejs_24
           pkgs.pnpm
           pkgs.exiftool
           pkgs.ffmpeg
           herdr.packages.${pkgs.system}.default
+          headroom
         ];
         shells = [
           pkgs.bashInteractive

@@ -9,3 +9,6 @@ build:
 	darwin-rebuild build --flake .#MacBook
 Mo:		
 	home-manager switch --flake .#Mo -b backup
+
+headroom-update:
+	cd pkgs/headroom && nix run nixpkgs#uv -- lock --upgrade

@@ -1,0 +1,28 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup|resume",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/run/current-system/sw/bin/headroom init hook ensure --profile init-nix-3350b95a --marker headroom-init-codex",
+            "timeout": 60
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/run/current-system/sw/bin/headroom init hook ensure --profile init-nix-3350b95a --marker headroom-init-codex",
+            "timeout": 60
+          }
+        ]
+      }
+    ]
+  }
+}
