@@ -12,3 +12,6 @@ Mo:
 
 headroom-update:
 	cd pkgs/headroom && nix run nixpkgs#uv -- lock --upgrade
+
+cleanup-disk:
+	./scripts/cleanup-disk.sh
